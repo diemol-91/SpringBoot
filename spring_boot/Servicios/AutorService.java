@@ -29,7 +29,12 @@ public class AutorService {
 
     public Autor Actualizar(long id, Autor actualizar ){
         Autor autorExiste = repo_autor.findById(id)
-                .orElseThrow(()-> new RuntimeException("Autor no existe "+id));
+                .orElseThrow(() -> new RuntimeException("Autor no existe " + id));
+
+        autorExiste.setNombre(actualizar.getNombre());
+        autorExiste.setApellido(actualizar.getApellido());
+        autorExiste.setNacionalidad(actualizar.getNacionalidad());
+
         return repo_autor.save(autorExiste);
     }
 

@@ -27,9 +27,13 @@ public class ProvinciaService {
 
 
     public Provincia Actualizar(long id, Provincia actualizar ){
-        Provincia regionExiste = repo_provincia.findById(id)
-                .orElseThrow(()-> new RuntimeException("Provincia no existe "+id));
-        return repo_provincia.save(regionExiste);
+        Provincia provinciaExiste = repo_provincia.findById(id)
+                .orElseThrow(() -> new RuntimeException("Provincia no existe " + id));
+
+        provinciaExiste.setNombre(actualizar.getNombre());
+        provinciaExiste.setRegion(actualizar.getRegion());
+
+        return repo_provincia.save(provinciaExiste);
     }
 
     public void eliminar (Long id){
