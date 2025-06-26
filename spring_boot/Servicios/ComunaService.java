@@ -27,9 +27,13 @@ public class ComunaService {
 
 
     public Comuna Actualizar(long id, Comuna actualizar ){
-        Comuna regionExiste = repo_comuna.findById(id)
-                .orElseThrow(()-> new RuntimeException("Comuna no existe "+id));
-        return repo_comuna.save(regionExiste);
+        Comuna comunaExiste = repo_comuna.findById(id)
+                .orElseThrow(() -> new RuntimeException("Comuna no existe " + id));
+
+        comunaExiste.setNombre(actualizar.getNombre());
+        comunaExiste.setProvincia(actualizar.getProvincia());
+
+        return repo_comuna.save(comunaExiste);
     }
 
     public void eliminar (Long id){

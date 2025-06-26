@@ -42,7 +42,16 @@ public class LibrosService {
     }
     public Libros Actualizar(int id, Libros actualizar ){
         Libros librosExiste = repo_libros.findById(id)
-                .orElseThrow(()-> new RuntimeException("Libro no existe "+id));
+                .orElseThrow(() -> new RuntimeException("Libro no existe " + id));
+
+        librosExiste.setTitulo(actualizar.getTitulo());
+        librosExiste.setPrecio(actualizar.getPrecio());
+        librosExiste.setFechaedicion(actualizar.getFechaedicion());
+        librosExiste.setStock(actualizar.getStock());
+        librosExiste.setAutor(actualizar.getAutor());
+        librosExiste.setCategoria(actualizar.getCategoria());
+        librosExiste.setEditorial(actualizar.getEditorial());
+
         return repo_libros.save(librosExiste);
     }
 

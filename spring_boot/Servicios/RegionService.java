@@ -28,7 +28,10 @@ public class RegionService {
 
     public Region Actualizar(long id, Region actualizar ){
         Region regionExiste = repo_region.findById(id)
-                .orElseThrow(()-> new RuntimeException("Region no existe "+id));
+                .orElseThrow(() -> new RuntimeException("Region no existe " + id));
+
+        regionExiste.setNombre(actualizar.getNombre());
+
         return repo_region.save(regionExiste);
     }
 
